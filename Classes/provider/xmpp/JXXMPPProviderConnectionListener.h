@@ -7,27 +7,21 @@
  *
  */
 
+#include <gloox/connectionlistener.h>
+#include <gloox/gloox.h>
+
+using namespace gloox;
+
 class ProviderConnectionListener : public ConnectionListener {
+	
 public:
-	ProviderConnectionListener(JXXMPPJunctionProvider *provider) {
-		this->provider = provider;
-	}
-	virtual void onConnect() {
-		[provider notifyConnect];
-	}
-	virtual void onDisconnect(ConnectionError e) {
-		NSLog(@"XMPP client disconnected");
-		[provider notifyConnect];
-	}
-	virtual void onResourceBindError(const Error *error) {
-		NSLog(@"XMPP client resource bind error");
-		[provider notifyConnect];
-	}
-	virtual void onSessionCreateError(const Error *error) {
-		NSLog(@"XMPP client session create error");
-		[provider notifyConnect];
-	}
-	bool onTLSConnect(const CertInfo &info) { return true; }
+	ProviderConnectionListener(void *provider);
+	virtual void onConnect();
+	virtual void onDisconnect(ConnectionError e);
+	virtual void onResourceBindError(const Error *error);
+	virtual void onSessionCreateError(const Error *error);
+	virtual bool onTLSConnect(const CertInfo &info);
+
 private:
-	JXXMPPJunctionProvider *provider;
+	void* provider;
 };

@@ -10,17 +10,21 @@
 #import "JXJunction.h"
 #import "JXMessageTarget.h"
 
+
+
 @class JXActivityScript;
 @class JXJunctionActor;
 @class JXXMPPJunctionProvider;
 @class JXMessageHandler;
 @class JXXMPPSwitchboardConfig;
 
+
 #include <gloox/client.h>
 #include <gloox/mucroom.h>
 #include <gloox/mucroomhandler.h>
 #include <gloox/mucroomconfighandler.h>
 #include <gloox/connectionlistener.h>
+
 
 using namespace std;
 using namespace gloox;

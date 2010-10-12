@@ -16,6 +16,7 @@
 #import "JXXMPPProviderConnectionListener.h"
 #import "JXXMPPProviderRoomHandler.h"
 
+
 #include <vector>
 #include <string>
 #include <gloox/gloox.h>
@@ -23,7 +24,13 @@
 #include <gloox/tag.h>
 #include <gloox/dataform.h>
 
+#include "JXXMPPJunctionProviderCInterface.h"
+
 @implementation JXXMPPJunctionProvider
+
+void providerNotifyConnect (void *instance){
+	[(id) instance notifyConnect];
+}
 
 class MyLogHandler : public LogHandler {
 public:

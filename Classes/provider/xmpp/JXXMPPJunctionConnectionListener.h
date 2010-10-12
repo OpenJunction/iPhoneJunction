@@ -7,24 +7,19 @@
  *
  */
 
-#import "JXXMPPJunction.h"
-
 #include <gloox/connectionlistener.h>
+#include <gloox/gloox.h>
+
+using namespace gloox;
 
 class JXXMPPJunctionConnectionListener : public ConnectionListener {
+	
 public:
-	JXXMPPJunctionConnectionListener(JXXMPPJunction *junction) {
-		this->junction = junction;
-	}
-	void onConnect () {}
-	void onDisconnect (ConnectionError e) {
-		if (e != ConnUserDisconnected) {
-			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-			[junction triggerDisconnect];
-			[pool drain];
-		}
-	}
-	bool onTLSConnect (const CertInfo &info) { return true; }
+	JXXMPPJunctionConnectionListener(void *junction);
+	virtual void onConnect ();
+	virtual void onDisconnect (ConnectionError e);
+	virtual bool onTLSConnect (const CertInfo &info);
+	
 private:
-	JXXMPPJunction *junction;
+	void *junction;
 };

@@ -6,6 +6,7 @@
 //  Copyright 2010 Stanford University. All rights reserved.
 //
 
+
 #import "JXXMPPJunction.h"
 #import "JXActivityScript.h"
 #import "JXXMPPSwitchboardConfig.h"
@@ -19,6 +20,7 @@
 #import "JXXMPPJunctionConfigHandler.h"
 #import "JXXMPPJunctionRoomHandler.h"
 
+
 #import "JSON.h"
 
 #include <string>
@@ -28,6 +30,7 @@
 #include <gloox/messagehandler.h>
 #include <gloox/messagesession.h>
 #include <gloox/jid.h>
+#include "JXXMPPJunctionCInterface.h"
 
 @interface JXMessageHandler_Default : JXMessageHandler
 {
@@ -55,6 +58,14 @@
 @end
 
 @implementation JXXMPPJunction
+
+void junctionOnDisconnect(void* junction, ConnectionError& e){
+	if (e != ConnUserDisconnected) {
+		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+		[(id)junction triggerDisconnect];
+		[pool drain];
+	}
+}
 
 - (JXActivityScript *)activityDescription {
 	return mActivityDescription;
