@@ -7,7 +7,7 @@
  *
  */
 
-
+#import "JXXMPPJunction.h"
 #include <gloox/connectionlistener.h>
 #include <gloox/gloox.h>
 
@@ -16,7 +16,7 @@ using namespace gloox;
 class JunctionConnectionListener : public ConnectionListener {
 	
 public:
-	JunctionConnectionListener(void *provider);
+	JunctionConnectionListener(JXXMPPJunction *provider);
 	virtual void onConnect();
 	virtual void onDisconnect(ConnectionError e);
 	virtual void onResourceBindError(const Error *error);
@@ -24,5 +24,5 @@ public:
 	virtual bool onTLSConnect(const CertInfo &info);
 	
 private:
-	void* junction;
+	JXXMPPJunction* junction;
 };

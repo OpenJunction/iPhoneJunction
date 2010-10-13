@@ -30,7 +30,7 @@
 #include <gloox/messagehandler.h>
 #include <gloox/messagesession.h>
 #include <gloox/jid.h>
-#include "JXXMPPJunctionCInterface.h"
+
 
 @interface JXMessageHandler_Default : JXMessageHandler
 {
@@ -59,13 +59,7 @@
 
 @implementation JXXMPPJunction
 
-void junctionOnDisconnect(void* junction, ConnectionError& e){
-	if (e != ConnUserDisconnected) {
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-		[(id)junction triggerDisconnect];
-		[pool drain];
-	}
-}
+
 
 - (JXActivityScript *)activityDescription {
 	return mActivityDescription;
