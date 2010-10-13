@@ -8,19 +8,22 @@
  */
 
 #include "JXXMPPJunctionConnectionListener.h"
-#include "JXXMPPJunctionCInterface.h" 
+#include "JXXMPPJunctionCInterface.h"
 #include <gloox/connectionlistener.h>
 #include <gloox/gloox.h>
 
-
-JXXMPPJunctionConnectionListener::JXXMPPJunctionConnectionListener(void *junction) : ConnectionListener() {
-		this->junction = junction;
+JunctionConnectionListener::JunctionConnectionListener(void *junction) : ConnectionListener() {
+	this->junction = junction;
 }
 
-void JXXMPPJunctionConnectionListener::onConnect () {}
+void JunctionConnectionListener::onConnect() {}
 
-void JXXMPPJunctionConnectionListener::onDisconnect (ConnectionError e) {
+void JunctionConnectionListener::onDisconnect(ConnectionError e) {
 	junctionOnDisconnect(junction, e);
 }
-	
-bool JXXMPPJunctionConnectionListener::onTLSConnect (const CertInfo &info) { return true; }
+
+void JunctionConnectionListener::onResourceBindError(const Error *error) {}
+
+void JunctionConnectionListener::onSessionCreateError(const Error *error) {}
+
+bool JunctionConnectionListener::onTLSConnect(const CertInfo &info) { return true; }

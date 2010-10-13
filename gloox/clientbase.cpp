@@ -1289,7 +1289,7 @@ namespace gloox
 
   void ClientBase::notifyOnConnect()
   {
-    util::ForEach( m_connectionListeners, &ConnectionListener::onConnect );
+	util::ForEach( m_connectionListeners, &ConnectionListener::onConnect );
   }
 
   void ClientBase::notifyOnDisconnect( ConnectionError e )

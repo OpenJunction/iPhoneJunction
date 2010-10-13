@@ -87,7 +87,10 @@ namespace gloox
     template< typename T, typename F >
     inline void ForEach( T& t, F f )
     {
-      for( typename T::iterator it = t.begin(); it != t.end(); ++it )
+	  T newCopy;
+	  newCopy.resize(t.size());
+	  std::copy(t.begin(), t.end(), newCopy.begin());
+      for( typename T::iterator it = newCopy.begin(); it != newCopy.end(); ++it )
         ( (*it)->*f )();
     }
 
@@ -101,6 +104,9 @@ namespace gloox
     template< typename T, typename F, typename D >
     inline void ForEach( T& t, F f, D& d )
     {
+	  T newCopy;
+	  newCopy.resize(t.size());
+	  std::copy(t.begin(), t.end(), newCopy.begin());
       for( typename T::iterator it = t.begin(); it != t.end(); ++it )
         ( (*it)->*f )( d );
     }
@@ -116,6 +122,9 @@ namespace gloox
     template< typename T, typename F, typename D1, typename D2 >
     inline void ForEach( T& t, F f, D1& d1, D2& d2 )
     {
+	  T newCopy;
+	  newCopy.resize(t.size());
+	  std::copy(t.begin(), t.end(), newCopy.begin());
       for( typename T::iterator it = t.begin(); it != t.end(); ++it )
         ( (*it)->*f )( d1, d2 );
     }
@@ -132,6 +141,9 @@ namespace gloox
     template< typename T, typename F, typename D1, typename D2, typename D3 >
     inline void ForEach( T& t, F f, D1& d1, D2& d2, D3& d3 )
     {
+	  T newCopy;
+	  newCopy.resize(t.size());
+	  std::copy(t.begin(), t.end(), newCopy.begin());
       for( typename T::iterator it = t.begin(); it != t.end(); ++it )
         ( (*it)->*f )( d1, d2, d3 );
     }

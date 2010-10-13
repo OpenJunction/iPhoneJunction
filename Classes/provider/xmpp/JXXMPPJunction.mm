@@ -136,7 +136,7 @@ void junctionOnDisconnect(void* junction, ConnectionError& e){
 			roomHandler = new JXXMPPJunctionRoomHandler(self);
 			configHandler = new JXXMPPJunctionConfigHandler(self);
 			
-			connectionListener = new JXXMPPJunctionConnectionListener(self);
+			connectionListener = new JunctionConnectionListener(self);
 			mClient->registerConnectionListener(connectionListener);
 		} else {
 			NSLog(@"XMPP client must not be NULL.");
